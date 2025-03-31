@@ -6,7 +6,7 @@ const requestLogger = require('./middlewares/requestLogger');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./config/swaggerConfig");
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const FRONTEND_URL = process.env.FRONTEND_URL || '*';
 
 const createApp = () => {
 
