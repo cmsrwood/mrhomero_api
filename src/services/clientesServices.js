@@ -1,6 +1,5 @@
 const { NotFoundError, BadRequestError } = require('../errors/ExceptionErrors');
 require('dotenv').config();
-const axios = require("axios");
 const clientesRepository = require('../repositories/clientesRepository');
 
 // Servicio para mostrar clientes
@@ -13,7 +12,7 @@ exports.mostrarClientes = async () => {
 // Servicio para mostrar cliente por id
 exports.mostrarCliente = async (id) => {
     const response = await clientesRepository.mostrarCliente(id);
-    if (response.length <= 0) throw new NotFoundError("El cliente no existe");
+    if (!response) throw new NotFoundError("El cliente no existe");
     return response
 }
 

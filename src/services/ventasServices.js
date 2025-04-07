@@ -137,7 +137,7 @@ exports.mostrarVenta = async (id) => {
 // Servicios para mostrar compras de un cliente
 exports.mostrarCompras = async (id) => {
     const cliente = await clientesRepository.mostrarCliente(id);
-    if (cliente.length <= 0) throw new NotFoundError('El cliente no existe');
+    if (cliente === null) throw new NotFoundError('El cliente no existe');
 
     const response = await ventasRepository.mostrarCompras(id);
     return response;

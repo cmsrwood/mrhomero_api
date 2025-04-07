@@ -5,6 +5,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const requestLogger = require('./middlewares/requestLogger');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./config/swaggerConfig");
+const { BadRequestError } = require('./errors/ExceptionErrors');
 
 const FRONTEND_URL = process.env.FRONTEND_URL || '*';
 

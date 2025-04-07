@@ -1,7 +1,7 @@
 
 const nodemailer = require('nodemailer');
 const moment = require('moment');
-const {NotFoundError, BadRequestError } = require('../errors/ExceptionErrors');
+const { NotFoundError, BadRequestError } = require('../errors/ExceptionErrors');
 
 
 // Configuración de transporte de nodemailer para enviar correos electrónicos
@@ -22,8 +22,8 @@ exports.ingresar = async (req, res, next) => {
         const user = req.body
         const respose = await authServices.ingresar(user);
         res.status(200).json(respose);
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 };
 
@@ -33,39 +33,37 @@ exports.validarToken = async (req, res, next) => {
         const response = await authServices.validarToken(token);
         req.user = response.decoded
         res.status(200).json(response);
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 }
 
-exports.registrar = (req, res, next) => {
+exports.registrar = async (req, res, next) => {
     try {
         const user = req.body
         const response = authServices.registrar(user);
         res.status(200).json(response);
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 };
-exports.recuperar = (req, res, next) => {
+exports.recuperar = async (req, res, next) => {
     try {
         const email = req.body.email;
         const response = authServices.recuperar(email);
         res.status(200).json(response);
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 };
 
-exports.resetPassword = (req, res, next) => {
+exports.resetPassword = async (req, res, next) => {
     try {
         const datos = req.body
         const response = authServices.resetPassword(datos);
         res.status(200).json(response);
     }
-    catch (error) {
-        next(error)
+    catch (err) {
+        next(err)
     }
 };
-
-module.exports = exports;

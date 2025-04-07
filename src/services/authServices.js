@@ -1,4 +1,5 @@
 const { NotFoundError, BadRequestError } = require('../errors/ExceptionErrors');
+
 const authRepository = require('../repositories/authRepository');
 const clientesRepository = require('../repositories/clientesRepository');
 
@@ -25,6 +26,7 @@ const transporter = nodemailer.createTransport({
 //Servicio para ingresar
 exports.ingresar = async (user) => {
     const response = await authRepository.ingresar(user);
+    
 
     if (response.length <= 0) throw new NotFoundError('El correo no está registrado en el sistema');
     const usuario = response.results[0]
@@ -57,9 +59,15 @@ exports.validarToken = async (token) => {
 };
 
 exports.registrar = async (user) => {
-    const existe = await clientesRepository.mostrarClientePorEmail(user.user_email);
-    const response = await authRepository.registrar(user);
-    return response
+    try {
+        const existe = await authRepository.traerClientePorEmail(user.email);
+        if (existe) throw new BadRequestError('El correo ya se encuentra registrado.');
+
+        const response = await authRepository.registrar(user);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 exports.recuperar = async (email) => {
@@ -73,8 +81,9 @@ exports.recuperar = async (email) => {
     try {
         const response = await authRepository.recuperar(verificationCode, expirationDate, id_usuario);
     } catch (error) {
-        throw new Error('Error al guardar el código de verificación');
+        throw new BadRequestError('Error al guardar el código de verificación');
     }
+
 
     const mailOptions = {
         from: 'notificadormrhomero@gmail.com',

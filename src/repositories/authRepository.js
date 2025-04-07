@@ -73,7 +73,7 @@ exports.recuperar = async (codigo, expirationDate, id) => {
 
 exports.traerUsuarioParaRecuperar = async (datos) => {
     return new Promise((resolve, reject) => {
-        const q = "SELECT * FROM usuarios WHERE user_reset_code = ? AND user_reset_code_expiration > ? AND user_email = ?";	
+        const q = "SELECT * FROM usuarios WHERE user_reset_code = ? AND user_reset_code_expiration > ? AND user_email = ?";
         const values = [
             datos.verificationCode,
             moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -100,7 +100,6 @@ exports.resetPassword = async (datos) => {
                 results: results,
                 message: "La contraseña se ha restablecido con éxito."
             });
-            console.log (results);
         });
     })
 }
