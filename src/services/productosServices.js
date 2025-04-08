@@ -17,8 +17,9 @@ exports.mostrarProductosPorCategoria = async (id) => {
 
 // Servicio para mostrar un producto
 exports.mostrarProducto = async (id) => {
+    console.log(id)
     const existe = await productosRepository.mostrarProducto(id);
-    if (existe.length < 0) throw new NotFoundError('El producto no existe');
+    if (existe == null) throw new NotFoundError('El producto no existe');
     return existe
 }
 
