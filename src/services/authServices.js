@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
 //Servicio para ingresar
 exports.ingresar = async (user) => {
     const response = await authRepository.ingresar(user);
-    
+
 
     if (response.length <= 0) throw new NotFoundError('El correo no está registrado en el sistema');
     const usuario = response.results[0]
@@ -122,8 +122,7 @@ exports.recuperar = async (email) => {
 }
 exports.resetPassword = async (datos) => {
     const usuarioRecuperar = await authRepository.traerUsuarioParaRecuperar(datos);
-    if (usuarioRecuperar.length <= 0) throw new BadRequestError('El correo no se encuentra registrado en el sistema');
-
+    if (usuarioRecuperar == null) throw new BadRequestError('El correo no se encuentra registrado en el sistema');
     const response = await authRepository.resetPassword(datos);
     return response
 }
