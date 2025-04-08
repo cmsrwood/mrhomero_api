@@ -1,5 +1,36 @@
 const { BadRequestError } = require('../errors/ExceptionErrors');
 
+const validateRegistrar = (req, res, next) => {
+    const { nombres, apellidos, email, password, confirmPassword } = req.body;
+
+    const error = [];
+
+    if (!nombres) {
+        error.push('Falta paramétro: nombres');
+    }
+
+    if (!apellidos) {
+        error.push('Falta paramétro: apellidos');
+    }
+
+    if (!email) {
+        error.push('Falta paramétro: email');
+    }
+
+    if (!password) {
+        error.push('Falta paramétro: password');
+    }
+
+    if (!confirmPassword) {
+        error.push('Falta paramétro: confirmPassword');
+    }
+
+    if (error.length > 0) {
+        throw new BadRequestError(error);
+    }
+    next();
+};
+
 const validateUser = (req, res, next) => {
     const { email, password } = req.body;
 
@@ -37,5 +68,6 @@ const validateToken = (req, res, next) => {
 
 module.exports = {
     validateUser,
-    validateToken
+    validateToken,
+    validateRegistrar
 };

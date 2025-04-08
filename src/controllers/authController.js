@@ -41,7 +41,7 @@ exports.validarToken = async (req, res, next) => {
 exports.registrar = async (req, res, next) => {
     try {
         const user = req.body
-        const response = authServices.registrar(user);
+        const response = await authServices.registrar(user);
         res.status(200).json(response);
     } catch (err) {
         next(err)
@@ -50,7 +50,7 @@ exports.registrar = async (req, res, next) => {
 exports.recuperar = async (req, res, next) => {
     try {
         const email = req.body.email;
-        const response = authServices.recuperar(email);
+        const response = await authServices.recuperar(email);
         res.status(200).json(response);
     } catch (err) {
         next(err)
@@ -60,7 +60,7 @@ exports.recuperar = async (req, res, next) => {
 exports.resetPassword = async (req, res, next) => {
     try {
         const datos = req.body
-        const response = authServices.resetPassword(datos);
+        const response = await authServices.resetPassword(datos);
         res.status(200).json(response);
     }
     catch (err) {

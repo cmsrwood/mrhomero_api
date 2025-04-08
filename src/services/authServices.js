@@ -61,7 +61,7 @@ exports.validarToken = async (token) => {
 exports.registrar = async (user) => {
     try {
         const existe = await authRepository.traerClientePorEmail(user.email);
-        if (existe) throw new BadRequestError('El correo ya se encuentra registrado.');
+        if (existe > 0) throw new BadRequestError('El correo ya se encuentra registrado.');
 
         const response = await authRepository.registrar(user);
         return response;
@@ -72,6 +72,10 @@ exports.registrar = async (user) => {
 
 exports.recuperar = async (email) => {
     const usuario = await clientesRepository.mostrarClientePorEmail(email);
+
+    if (!usuario) {
+        throw new NotFoundError('El correo no se encuentra registrado en el sistema');
+    }
 
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 

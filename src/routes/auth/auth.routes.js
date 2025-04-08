@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../../controllers/authController');
-const { validateUser, validateToken } = require('../../middlewares/validateAuth');
+const { validateUser, validateToken, validateRegistrar } = require('../../middlewares/validateAuth');
 
 // Get
 
@@ -77,7 +77,7 @@ router.post('/ingresar', validateUser, authController.ingresar);
  *         description: Error al registrar
  * 
  */
-router.post('/registrar', authController.registrar);
+router.post('/registrar', validateRegistrar, authController.registrar );
 /**
  * @swagger
  * /auth/recuperar:

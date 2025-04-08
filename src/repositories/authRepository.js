@@ -34,10 +34,12 @@ exports.traerClientePorEmail = async (email) => {
 exports.registrar = async (user) => {
     const fecha = moment().format('YYYY-MM-DD HH:mm:ss');
     const hashpassword = bcrypt.hashSync(user.password, 10);
+    const nombresConGuiones = user.nombres.replace(/\s+/g, '_');
+    const id_unico = `user_${nombresConGuiones}_${Date.now()}`;
     return new Promise((resolve, reject) => {
         const q = "INSERT INTO usuarios (id_user, user_nom, user_apels, user_email, user_pass , id_rol, user_fecha_registro) VALUES (?,?,?,?,?,3,?)";
         const values = [
-            user.id,
+            id_unico,
             user.nombres,
             user.apellidos,
             user.email,
