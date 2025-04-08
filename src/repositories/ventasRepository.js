@@ -71,6 +71,7 @@ exports.mostrarDetalleVenta = async (id) => {
 exports.mostrarProductosMasVendidos = async (ano, mes) => {
     return new Promise((resolve, reject) => {
         const q = `SELECT p.pro_nom,
+                p.id_producto,
                 p.pro_foto,
                 SUM(dv.cantidad_producto) AS cantidad_vendida
                 FROM detalle_ventas dv
