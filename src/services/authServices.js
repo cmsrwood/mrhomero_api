@@ -122,7 +122,7 @@ exports.recuperar = async (email) => {
 }
 exports.resetPassword = async (datos) => {
     const usuarioRecuperar = await authRepository.traerUsuarioParaRecuperar(datos);
-    if (usuarioRecuperar == null) throw new BadRequestError('El correo no se encuentra registrado en el sistema');
+    if (usuarioRecuperar == null) throw new BadRequestError('Revisa el código de verificación');
     const response = await authRepository.resetPassword(datos);
     return response
 }
