@@ -26,7 +26,7 @@ exports.traerClientePorEmail = async (email) => {
         ];
         global.db.query(q, values, (err, results) => {
             if (err) reject(err);
-            resolve(results);
+            resolve(results.length > 0 ? results[0] : null);
         });
     });
 }
