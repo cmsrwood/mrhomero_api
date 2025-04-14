@@ -8,7 +8,7 @@ const swaggerSpec = require("./config/swaggerConfig");
 
 const FRONTEND_URL = process.env.FRONTEND_URL
     ? process.env.FRONTEND_URL.split(',')
-    : ['http://localhost:5173', 'http://localhost:8081'];
+    : ['http://localhost:5173', 'http://localhost:8081', 'http://localhost:8082'];
 
 const createApp = () => {
     const app = express();
@@ -16,6 +16,7 @@ const createApp = () => {
     // Middlewares
     app.use(cors({
         origin: (origin, callback) => {
+            console.log('request origin: ', origin);
             if (!origin || FRONTEND_URL.includes(origin)) {
                 callback(null, true);
             } else {
