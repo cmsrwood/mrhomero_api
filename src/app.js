@@ -16,7 +16,7 @@ const createApp = () => {
     // Middlewares
     app.use(cors({
         origin: (origin, callback) => {
-            console.log('request origin: ', origin);
+            console.log('\nrequest origin: ', origin);
             if (!origin || FRONTEND_URL.includes(origin)) {
                 callback(null, true);
             } else {
