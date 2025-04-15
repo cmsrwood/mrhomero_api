@@ -31,7 +31,7 @@ const formatNumber = (value) => {
 
 // Genera el contenido del PDF
 async function generarPDF(doc, ventas, ano, mes) {
-    const filePath = path.resolve(__dirname, `../uploads/logo.png`);
+    const filePath = path.resolve(__dirname, `../assets/logo.png`);
 
     // Reporte de ventas diarias para un mes específico
     if (mes && ano) {
