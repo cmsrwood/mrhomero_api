@@ -9,7 +9,7 @@ exports.mostrarCategorias = async () => {
 //Servicio para mostrar una categoria
 exports.mostrarCategoria = async (id) => {
     const categoria = await menuRepository.mostrarCategoria(id);
-    if (categoria.length <= 0) throw new NotFoundError('La categoria no existe');
+    if (categoria === null) throw new NotFoundError('La categoria no existe');
     return categoria
 };
 
