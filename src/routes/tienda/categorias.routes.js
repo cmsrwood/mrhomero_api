@@ -137,7 +137,7 @@ router.put('/restaurar/:id', menuController.restaurarCategoria);
  *         name: id
  *         required: true
  *         schema:
- *           type: integer
+ *           type: string
  *         description: ID de la categoría a eliminar
  *     responses:
  *       200:

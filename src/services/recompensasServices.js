@@ -74,7 +74,6 @@ exports.reclamarRecompensa = async (id_recompensa, id_usuario) => {
 
     // Actualizar puntos del usuario
     const puntosRecompensa = recompensa.recomp_num_puntos;
-    console.log('Puntos de la recompensa: ' + puntosRecompensa);
     const actualizarPuntos = await recompensasRepository.actualizarPuntos(id_usuario, puntosRecompensa);
 
     return response;
