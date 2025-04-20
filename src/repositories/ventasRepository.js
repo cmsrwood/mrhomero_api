@@ -98,7 +98,9 @@ exports.mostrarProductosMasCompradosPorCliente = async (id) => {
     return new Promise((resolve, reject) => {
         const q = `
         SELECT 
+            p.id_producto,
             p.pro_nom, 
+            p.pro_foto,
             SUM(dv.cantidad_producto) AS cantidad_vendida
         FROM detalle_ventas dv
         JOIN ventas v ON dv.id_venta = v.id_venta
@@ -106,7 +108,8 @@ exports.mostrarProductosMasCompradosPorCliente = async (id) => {
         WHERE v.id_user = ?
         AND v.venta_estado = 1
         GROUP BY p.pro_nom
-        ORDER BY cantidad_vendida DESC;
+        ORDER BY cantidad_vendida DESC
+        LIMIT 8;
     `;
         const values = [id];
         global.db.query(q, values, (err, results) => {

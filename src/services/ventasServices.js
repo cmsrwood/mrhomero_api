@@ -160,7 +160,7 @@ exports.mostrarProductosMasVendidos = async (ano, mes) => {
 // Servicios para mostrar productos mas vendidos por cliente
 exports.mostrarProductosMasCompradosPorCliente = async (id) => {
     const existe = await clientesRepository.mostrarCliente(id);
-    if (existe.length <= 0) throw new NotFoundError('El cliente no existe');
+    if (existe === null) throw new NotFoundError('El cliente no existe');
     const response = await ventasRepository.mostrarProductosMasCompradosPorCliente(id);
     return response;
 };
