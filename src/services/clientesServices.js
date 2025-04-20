@@ -18,7 +18,7 @@ exports.mostrarCliente = async (id) => {
 
 exports.mostrarClientePorEmail = async (email) => {
     const response = await clientesRepository.mostrarClientePorEmail(email);
-    if (response.length <= 0) throw new NotFoundError("El cliente no existe");
+    if (response === null) throw new NotFoundError("El cliente no existe");
     return response
 }
 
