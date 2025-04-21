@@ -28,7 +28,7 @@ exports.actualizarCategoria = async (id, categoria) => {
     const existe = await this.mostrarCategoria(id)
     const existe2 = await menuRepository.verificarNombre(categoria.nombre);
 
-    if (existe.length <= 0) throw new NotFoundError('La categoria no existe');
+    if (existe === null) throw new NotFoundError('La categoria no existe');
     if (existe2) throw new BadRequestError('La categoria ya existe');
     const reponse = await menuRepository.actualizarCategoria(id, categoria);
     return reponse
