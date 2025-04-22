@@ -8,7 +8,7 @@ const swaggerSpec = require("./config/swaggerConfig");
 
 const FRONTEND_URL = process.env.FRONTEND_URL
     ? process.env.FRONTEND_URL.split(',')
-    : ['http://localhost:5173', 'http://localhost:8081', 'http://localhost:8082'];
+    : ['http://localhost:5173', 'http://localhost:8081', 'http://localhost:8082', 'http://localhost:4400'];
 
 const createApp = () => {
     const app = express();

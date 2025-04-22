@@ -42,8 +42,10 @@ router.get('/validarToken', validateToken, authController.validarToken);
  *               password:
  *                 type: string
  *     responses:
- *       200:Ingreso exitoso
- *       400:Error al ingresar
+ *       200:
+ *          description: Ingreso exitoso
+ *       400:
+ *          description: Error al ingresar
  */
 router.post('/ingresar', validateUser, authController.ingresar);
 
@@ -77,7 +79,7 @@ router.post('/ingresar', validateUser, authController.ingresar);
  *         description: Error al registrar
  * 
  */
-router.post('/registrar', validateRegistrar, authController.registrar );
+router.post('/registrar', validateRegistrar, authController.registrar);
 /**
  * @swagger
  * /auth/recuperar:

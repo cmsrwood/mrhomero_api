@@ -57,12 +57,15 @@ router.get('/:id', menuController.mostrarCategoria);
  *           schema:
  *             type: object
  *             properties:
- *               nombre:
+ *               id:
+ *                 type: string  
+ *                 example: id_categoria_hamburguesa
+ *               categoria:
  *                 type: string
- *                 example: "Bebidas"
- *               descripcion:
+ *                 example: "Bebidas sin alcohol"
+ *               foto:
  *                 type: string
- *                 example: "Categoría para todo tipo de bebidas"
+ *                 example: "https://example.com/foto.jpg"
  *     responses:
  *       200:
  *         description: Categoría creada exitosamente
@@ -91,12 +94,12 @@ router.post('/crear', validateMenu, menuController.crearCategoria);
  *           schema:
  *             type: object
  *             properties:
- *               nombre:
+ *               categoria:
  *                 type: string
  *                 example: "Bebidas sin alcohol"
- *               descripcion:
+ *               foto:
  *                 type: string
- *                 example: "Categoría para bebidas sin alcohol"
+ *                 example: "https://example.com/foto.jpg"
  *     responses:
  *       200:
  *         description: Categoría actualizada exitosamente
