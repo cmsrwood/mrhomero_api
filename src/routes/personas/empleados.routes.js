@@ -183,7 +183,7 @@ router.post('/horaFin/:id', empleadosController.horaFin);
 /**
  * @swagger
  * /personas/empleados/crear:
- *   post:
+ *   put:
  *     summary: Crear un empleado
  *     tags: [Empleados]     
  *     requestBody:
