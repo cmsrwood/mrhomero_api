@@ -68,7 +68,7 @@ router.get('/:id', invController.mostrarProductoInventario);
 router.get('/proveedores/mostrar', invController.mostrarProveedores);
 /**
  * @swagger
- * /tienda/inventario/categorias/crear:
+ * /tienda/inventario/crear:
  *  post:
  *     summary: Crear un producto en el inventario
  *     tags: [Inventario]
