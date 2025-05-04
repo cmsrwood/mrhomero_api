@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2025 a las 02:24:14
+-- Tiempo de generación: 04-05-2025 a las 05:33:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -97,7 +97,22 @@ INSERT INTO `detalle_ventas` (`id_detalle`, `id_venta`, `id_producto`, `cantidad
 (34, 'venta_6d6bd1b3-e57e-4e19-9d05-febe08dd3fbd', 'producto_Perro_hipermega_m84h687v', 1, '8000', '8000'),
 (35, 'venta_6d6bd1b3-e57e-4e19-9d05-febe08dd3fbd', 'producto_Pepsi_m83sa5gq', 1, '5000', '5000'),
 (36, 'venta_0a094519-7ec9-4fe6-b295-2efe8676cb79', 'producto_Hamburguesa doble con jamon_m84gfy4f', 2, '12000', '24000'),
-(37, 'venta_0a094519-7ec9-4fe6-b295-2efe8676cb79', 'producto_Colombiana_m84glp2f', 2, '5000', '10000');
+(37, 'venta_0a094519-7ec9-4fe6-b295-2efe8676cb79', 'producto_Colombiana_m84glp2f', 2, '5000', '10000'),
+(38, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Pepsi_m83sa5gq', 2, '5000', '10000'),
+(39, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Hamburguesa especial_m84gjzsa', 1, '7000', '7000'),
+(40, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Perro_hipermega_m84h687v', 2, '8000', '16000'),
+(41, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Perro_especial_m84h5i2i', 2, '7000', '14000'),
+(42, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Colombiana_m84glp2f', 2, '5000', '10000'),
+(43, 'venta_28244714-edff-4bbe-91c5-b9537fafa218', 'producto_Hamburguesa doble_m84ggd2f', 2, '10000', '20000'),
+(44, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Colombiana_m84glp2f', 3, '5000', '15000'),
+(45, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Perro_especial_m84h5i2i', 1, '7000', '7000'),
+(46, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Hamburguesa doble_m84ggd2f', 1, '10000', '10000'),
+(47, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Hamburguesa especial_m84gjzsa', 1, '7000', '7000'),
+(48, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Hamburguesa doble con jamon_m84gfy4f', 1, '12000', '12000'),
+(49, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Hamburguesa queso doble_m84gc67t', 1, '15000', '15000'),
+(50, 'venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', 'producto_Perro_hipermega_m84h687v', 1, '8000', '8000'),
+(51, 'venta_90cedb81-9a21-4e24-bfeb-1e120f46fdc8', 'producto_Hamburguesa doble_m84ggd2f', 1, '10000', '10000'),
+(52, 'venta_90cedb81-9a21-4e24-bfeb-1e120f46fdc8', 'producto_Hamburguesa especial_m84gjzsa', 1, '7000', '7000');
 
 -- --------------------------------------------------------
 
@@ -235,7 +250,22 @@ CREATE TABLE `recompensas_obt` (
 --
 
 INSERT INTO `recompensas_obt` (`id_recomp_obt`, `id_recomp`, `id_user`, `codigo`, `fecha_reclamo`, `estado`) VALUES
-(3, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '536820', '2025-03-11 08:26:14', 0);
+(4, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '378373', '2025-05-03 20:44:38', 1),
+(5, 'recompensa_Figura_homero_m84hlips', 'user_Dilan_Santiago_1740098072789', '320910', '2025-05-03 20:44:51', 1),
+(11, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '499794', '2025-05-03 21:23:15', 1),
+(12, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '137812', '2025-05-03 21:23:15', 1),
+(13, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '673031', '2025-05-03 21:23:15', 1),
+(14, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '786578', '2025-05-03 21:23:15', 1),
+(15, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '870221', '2025-05-03 21:23:15', 1),
+(16, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '860041', '2025-05-03 21:23:15', 1),
+(17, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '284402', '2025-05-03 21:23:15', 1),
+(18, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '409023', '2025-05-03 21:23:15', 1),
+(19, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '243922', '2025-05-03 21:23:15', 1),
+(20, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '228616', '2025-05-03 21:23:15', 1),
+(21, 'recompensa_Figura_homero_m84hlips', 'user_Dilan_Santiago_1740098072789', '810686', '2025-05-03 21:47:50', 1),
+(22, 'recompensa_Figura_homero_m84hlips', 'user_Dilan_Santiago_1740098072789', '604580', '2025-05-03 21:47:50', 1),
+(23, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '878227', '2025-05-03 21:50:02', 1),
+(24, 'recompensa_Peluche_de_millonarios_homero_m84hnyfc', 'user_Dilan_Santiago_1740098072789', '121508', '2025-05-03 22:12:25', 1);
 
 -- --------------------------------------------------------
 
@@ -284,11 +314,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `user_nom`, `user_apels`, `user_email`, `user_tel`, `user_puntos`, `user_foto`, `user_pass`, `user_reset_code`, `user_reset_code_expiration`, `user_fecha_registro`, `id_rol`, `user_estado`) VALUES
-('user_admin_1740097849543', 'admin', 'admin', 'admin@gmail.com', '3138975212', 0, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1740188123/user_admin_1740097849543.webp', '$2a$10$nhZ0WNjJk.oghLVI72XaPu45HoRCp/XOd3SpnmmvqCQzexejlllQS', NULL, NULL, '2025-02-20 19:30:49', 1, 1),
-('user_Bryam_1740098049146', 'Bryam', 'castañeda cuervo', 'bryamccuervo2004@gmail.com', NULL, 0, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1740188123/user_admin_1740097849543.webp', '$2a$10$x6V069NY.nSJtwa4h5sPle7WsKLiWk3PGCV/qJSEYWk15RokylCee', NULL, NULL, '2025-02-20 19:34:09', 3, 1),
-('user_Dilan_Santiago_1740098072789', 'Dilan Santiago', 'López Romero', 'dilanfantas@gmail.com', '3138975212', 143, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1740188123/user_admin_1740097849543.webp', '$2a$10$8xpwM3J6n4Xw2ejj6kqsV.qg0XhjWg8BtSRsFgV5PPf.b2EtYklEu', NULL, NULL, '2025-03-11 00:00:00', 2, 1),
-('user_Heiver_1741698186537', 'Heiver', 'Cuesta', 'heiver@gmail.com', NULL, 14, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1740188123/user_admin_1740097849543.webp', '$2a$10$/.za0rvYkLTphYheGHntJexPueazxsKCYkMCE6A09o/pPk.yWdyDy', NULL, NULL, '2025-03-11 08:03:06', 3, 1),
-('user_Johan_Sebastian_1740098106538', 'Johan Sebastian', 'Muñoz Contreras', 'johanmc@gmail.com', NULL, 138, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1740188123/user_admin_1740097849543.webp', '$2a$10$LCLJnriPFmYy/0ARI9W75OIhXqiTIlawgzczsgDUtiN0Nmvhs7P72', NULL, NULL, '2025-02-20 19:35:06', 3, 1);
+('user_admin_1740097849543', 'admin', 'admin', 'admin@gmail.com', '3138975212', 0, '', '$2a$10$nhZ0WNjJk.oghLVI72XaPu45HoRCp/XOd3SpnmmvqCQzexejlllQS', NULL, NULL, '2025-02-20 19:30:49', 1, 1),
+('user_Bryam_1740098049146', 'Bryam', 'castañeda cuervo', 'bryamccuervo2004@gmail.com', NULL, 0, '', '$2a$10$x6V069NY.nSJtwa4h5sPle7WsKLiWk3PGCV/qJSEYWk15RokylCee', NULL, NULL, '2025-02-20 19:34:09', 3, 1),
+('user_Dilan_Santiago_1740098072789', 'Dilan Santiago', 'López Romero', 'dilanfantas@gmail.com', '3138975212', 8, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1746329351/user_Dilan_Santiago_1740098072789.webp', '$2a$10$8xpwM3J6n4Xw2ejj6kqsV.qg0XhjWg8BtSRsFgV5PPf.b2EtYklEu', NULL, NULL, '2025-03-11 00:00:00', 3, 1),
+('user_Heiver_1741698186537', 'Heiver', 'Cuesta', 'heiver@gmail.com', NULL, 140, '', '$2a$10$/.za0rvYkLTphYheGHntJexPueazxsKCYkMCE6A09o/pPk.yWdyDy', NULL, NULL, '2025-03-11 08:03:06', 3, 1),
+('user_Johan_Sebastian_1740098106538', 'Johan Sebastian', 'Muñoz Contreras', 'johanmc@gmail.com', NULL, 138, 'https://res.cloudinary.com/ditdxw9ic/image/upload/v1746329472/user_Johan_Sebastian_1740098106538.webp', '$2a$10$LCLJnriPFmYy/0ARI9W75OIhXqiTIlawgzczsgDUtiN0Nmvhs7P72', NULL, NULL, '2025-02-20 19:35:06', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -312,9 +342,12 @@ CREATE TABLE `ventas` (
 INSERT INTO `ventas` (`id_venta`, `venta_fecha`, `id_user`, `venta_metodo_pago`, `venta_total`, `venta_estado`) VALUES
 ('venta_0a094519-7ec9-4fe6-b295-2efe8676cb79', '2025-03-11 08:08:42', 'user_Heiver_1741698186537', 'Efectivo', 34000, 1),
 ('venta_218ec110-0948-4b0f-89bc-c0e79fae26e9', '2024-12-04 07:39:24', 'user_Johan_Sebastian_1740098106538', 'Efectivo', 69000, 1),
+('venta_28244714-edff-4bbe-91c5-b9537fafa218', '2025-05-03 21:46:51', 'user_Dilan_Santiago_1740098072789', 'Efectivo', 77000, 1),
 ('venta_6d6bd1b3-e57e-4e19-9d05-febe08dd3fbd', '2025-03-11 07:40:35', 'user_Bryam_1740098049146', 'Efectivo', 119000, 1),
+('venta_90cedb81-9a21-4e24-bfeb-1e120f46fdc8', '2025-05-03 21:47:18', 'user_Dilan_Santiago_1740098072789', 'Nequi', 17000, 1),
 ('venta_94daf4df-652a-4b16-9359-7efe4e4badb0', '2025-03-11 07:39:04', 'user_Johan_Sebastian_1740098106538', 'Efectivo', 69000, 1),
 ('venta_aa240d38-e175-4a6e-87fa-145e673feae5', '2025-03-11 07:40:11', NULL, 'Efectivo', 61000, 1),
+('venta_d52e1aa1-56f7-4294-ba18-e3ee4fe2dc9a', '2025-05-03 21:47:08', 'user_Dilan_Santiago_1740098072789', 'Tarjeta', 74000, 1),
 ('venta_dc2c5d2d-6615-4872-86c6-5fbec17db30b', '2025-02-01 07:40:03', NULL, 'Efectivo', 30000, 1),
 ('venta_e56f8b35-fecb-4cec-9234-398a26176b6c', '2025-02-13 07:39:45', 'user_Bryam_1740098049146', 'Efectivo', 64000, 1),
 ('venta_e88599f1-2d5b-4d41-baa8-95078441ab43', '2025-01-01 07:38:42', NULL, 'Efectivo', 5000, 1),
@@ -335,7 +368,8 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `detalle_ventas`
   ADD PRIMARY KEY (`id_detalle`),
-  ADD KEY `detalle_ventas_venta` (`id_venta`);
+  ADD KEY `detalle_ventas_venta` (`id_venta`),
+  ADD KEY `producto` (`id_producto`);
 
 --
 -- Indices de la tabla `empleados_horas`
@@ -407,7 +441,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `detalle_ventas`
 --
 ALTER TABLE `detalle_ventas`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados_horas`
@@ -431,7 +465,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `recompensas_obt`
 --
 ALTER TABLE `recompensas_obt`
-  MODIFY `id_recomp_obt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_recomp_obt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
