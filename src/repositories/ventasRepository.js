@@ -71,18 +71,20 @@ exports.mostrarDetalleVenta = async (id) => {
 exports.mostrarProductosMasVendidos = async (ano, mes) => {
     return new Promise((resolve, reject) => {
         const q = `SELECT 
-                p.id_producto,
-                p.pro_nom,
-                p.pro_foto,
-                SUM(dv.cantidad_producto) AS cantidad_vendida
-                FROM detalle_ventas dv
-                JOIN productos p ON dv.id_producto = p.id_producto
-                JOIN ventas v ON dv.id_venta = v.id_venta
-                WHERE YEAR(v.venta_fecha) = ?
-                AND MONTH(v.venta_fecha) = ?
-                AND v.venta_estado = 1
-                ORDER BY cantidad_vendida DESC
-                LIMIT 8;`;
+                        p.id_producto,
+                        p.pro_nom,
+                        p.pro_foto,
+                        SUM(dv.cantidad_producto) AS cantidad_vendida
+                    FROM detalle_ventas dv
+                    JOIN productos p ON dv.id_producto = p.id_producto
+                    JOIN ventas v ON dv.id_venta = v.id_venta
+                    WHERE YEAR(v.venta_fecha) = ?
+                    AND MONTH(v.venta_fecha) = ?
+                    AND v.venta_estado = 1
+                    GROUP BY p.id_producto, p.pro_nom, p.pro_foto
+                    ORDER BY cantidad_vendida DESC
+                    LIMIT 8;`;
+
 
         const values = [ano, mes];
         global.db.query(q, values, (err, results) => {
@@ -97,19 +99,21 @@ exports.mostrarProductosMasVendidos = async (ano, mes) => {
 exports.mostrarProductosMasCompradosPorCliente = async (id) => {
     return new Promise((resolve, reject) => {
         const q = `
-        SELECT 
-            p.id_producto,
-            p.pro_nom, 
-            p.pro_foto,
-            SUM(dv.cantidad_producto) AS cantidad_vendida
-        FROM detalle_ventas dv
-        JOIN ventas v ON dv.id_venta = v.id_venta
-        JOIN productos p ON dv.id_producto = p.id_producto
-        WHERE v.id_user = ?
-        AND v.venta_estado = 1
-        ORDER BY cantidad_vendida DESC
-        LIMIT 8;
-    `;
+                SELECT 
+                    p.id_producto,
+                    p.pro_nom, 
+                    p.pro_foto,
+                    SUM(dv.cantidad_producto) AS cantidad_vendida
+                FROM detalle_ventas dv
+                JOIN ventas v ON dv.id_venta = v.id_venta
+                JOIN productos p ON dv.id_producto = p.id_producto
+                WHERE v.id_user = ?
+                AND v.venta_estado = 1
+                GROUP BY p.id_producto, p.pro_nom, p.pro_foto
+                ORDER BY cantidad_vendida DESC
+                LIMIT 8;
+`;
+
         const values = [id];
         global.db.query(q, values, (err, results) => {
             if (err) reject(err);
