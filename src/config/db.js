@@ -1,4 +1,7 @@
-const mysql = require('mysql');
+
+const mysql = require('mysql2');
+const fs = require('fs');
+const path = require('path');
 
 const connectDB = async () => {
     const pool = mysql.createPool({
@@ -7,8 +10,13 @@ const connectDB = async () => {
         password: process.env.DB_PASS || '',
         database: process.env.DB_NAME || 'mrhomero',
         connectTimeout: 10000,
-        ssl: process.env.DB_SSL ? true : false
+        ssl: process.env.DB_SSL ? {
+            ca: fs.readFileSync(path.join(__dirname, './certs/ca.pem'))
+        } : false,
+        port: process.env.DB_PORT || 3306
     });
+
+    connectTimeout: 10000
 
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
