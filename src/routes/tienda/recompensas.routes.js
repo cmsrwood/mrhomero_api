@@ -50,13 +50,6 @@ router.get('/:id', recompensasController.mostrarRecompensa);
  *   get:
  *     summary: Obtener todas las recompensas que han sido reclamadas
  *     tags: [Recompensas]
- *     parameters:
- *       - in: path
- *         name: id_recomp_obt
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID de la recompensa obtenida
  *     responses:
  *       200:
  *         description: Lista de recompensas obtenida exitosamente
