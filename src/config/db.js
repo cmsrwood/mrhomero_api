@@ -16,8 +16,6 @@ const connectDB = async () => {
         port: process.env.DB_PORT || 3306
     });
 
-    connectTimeout: 10000
-
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
             if (err) {

@@ -94,7 +94,7 @@ exports.eliminarEmpleado = async (id) => {
 // Repositorio para mostrar las horas de un empleado
 exports.MostrarHorasEmpleadoMes = async (mes, ano, id) => {
     return new Promise((resolve, reject) => {
-        const q = "SELECT DATE_FORMAT(hora_inicio, ' %Y-%m-%d %H:%i:%s') AS hora_inicio, DATE_FORMAT(hora_fin, '%Y-%m-%d %H:%i:%s') AS hora_fin, fecha FROM empleados_horas WHERE MONTH(hora_inicio) = ? AND YEAR(hora_inicio) = ? AND MONTH(hora_fin) = ? AND YEAR(hora_fin) = ? AND id_user = ? GROUP BY fecha ORDER BY fecha;";
+        const q = "SELECT DATE_FORMAT(hora_inicio, ' %Y-%m-%d %H:%i:%s') AS hora_inicio, DATE_FORMAT(hora_fin, '%Y-%m-%d %H:%i:%s') AS hora_fin, fecha FROM empleados_horas WHERE MONTH(hora_inicio) = ? AND YEAR(hora_inicio) = ? AND MONTH(hora_fin) = ? AND YEAR(hora_fin) = ? AND id_user = ? ORDER BY fecha;";
         const values = [
             mes,
             ano,

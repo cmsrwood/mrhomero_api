@@ -81,7 +81,6 @@ exports.mostrarProductosMasVendidos = async (ano, mes) => {
                 WHERE YEAR(v.venta_fecha) = ?
                 AND MONTH(v.venta_fecha) = ?
                 AND v.venta_estado = 1
-                GROUP BY p.pro_nom, p.pro_foto
                 ORDER BY cantidad_vendida DESC
                 LIMIT 8;`;
 
@@ -108,7 +107,6 @@ exports.mostrarProductosMasCompradosPorCliente = async (id) => {
         JOIN productos p ON dv.id_producto = p.id_producto
         WHERE v.id_user = ?
         AND v.venta_estado = 1
-        GROUP BY p.pro_nom
         ORDER BY cantidad_vendida DESC
         LIMIT 8;
     `;
@@ -166,7 +164,6 @@ exports.ventasMensuales = async (ano, mes) => {
                 FROM ventas
                 WHERE YEAR(venta_fecha) = ? AND MONTH(venta_fecha) = ?
                 AND venta_estado = 1
-                GROUP BY dia
                 ORDER BY dia;`;
         const values = [ano, mes];
         global.db.query(q, values, (err, results) => {
@@ -185,7 +182,6 @@ exports.generarPDFVentasAnual = async (ano) => {
                 FROM ventas
                 WHERE YEAR(venta_fecha) = ?
                 AND venta_estado = 1
-                GROUP BY mes
                 ORDER BY mes;`;
 
         const values = [ano];
@@ -205,7 +201,6 @@ exports.generarPDFVentasMensuales = async (ano, mes) => {
                 FROM ventas
                 WHERE YEAR(venta_fecha) = ? AND MONTH(venta_fecha) = ?
                 AND venta_estado = 1
-                GROUP BY dia
                 ORDER BY dia;`;
 
         const values = [ano, mes];
