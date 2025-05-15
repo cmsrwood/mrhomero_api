@@ -5,6 +5,15 @@ const port = process.env.PORT || 4400;
 const sequelizeDB = require('./src/database/database');
 const Categorias = require('./src/models/Categorias');
 const DetalleVentas = require('./src/models/DetalleVentas');
+const EmpleadosHoras = require('./src/models/EmpleadosHoras');
+const Inventario = require('./src/models/Inventario');
+const Productos = require('./src/models/Productos');
+const Proveedores = require('./src/models/Proveedores');
+const Recompensas = require('./src/models/Recompensas');
+const RecompensasObtenidas = require('./src/models/RecompensasObtenidas');
+const Roles = require('./src/models/Roles');
+const Usuarios = require('./src/models/Usuarios');
+const Ventas = require('./src/models/Ventas');
 
 const getLocalIP = () => {
     const nets = os.networkInterfaces();
