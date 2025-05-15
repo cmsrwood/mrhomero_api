@@ -2,6 +2,9 @@ const os = require('os');
 const connectDB = require('./src/config/db');
 const createApp = require('./src/app');
 const port = process.env.PORT || 4400;
+const sequelizeDB = require('./src/database/database');
+const Categorias = require('./src/models/Categorias');
+const DetalleVentas = require('./src/models/DetalleVentas');
 
 const getLocalIP = () => {
     const nets = os.networkInterfaces();
@@ -17,6 +20,10 @@ const getLocalIP = () => {
 
 const startServer = async () => {
     try {
+        // Sincronizar la base de datos
+        await sequelizeDB.authenticate();
+        await sequelizeDB.sync({ force: false });
+        console.log('Base de datos sincronizada correctamente.');
         // Conectar a la base de datos
         await connectDB();
 
