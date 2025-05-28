@@ -38,10 +38,6 @@ const createApp = () => {
     //Ruta Swagger
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-    app.get('/', (req, res) => {
-        res.send('API de Mr. Homero');
-    });
-
     // Manejo de errores global
     app.use(errorHandler);
 

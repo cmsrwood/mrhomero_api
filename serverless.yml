@@ -9,6 +9,9 @@ provider:
   runtime: nodejs18.x
   region: us-east-1
   environment:
+  
+    NODE_ENV: ${env:NODE_ENV}
+
     DB_HOST: ${env:DB_HOST}
     DB_NAME: ${env:DB_NAME}
     DB_USER: ${env:DB_USER}
@@ -22,9 +25,7 @@ provider:
     DB_TEST_HOST: ${env:DB_TEST_HOST}
     DB_TEST_PORT: ${env:DB_TEST_PORT}
     DB_TEST_DIALECT: ${env:DB_TEST_DIALECT}
-
-    APP_NAME: ${env:APP_NAME}
-    NODE_ENV: ${env:NODE_ENV}
+    
     EMAIL_PASS: ${env:EMAIL_PASS}
     EMAIL_USER: ${env:EMAIL_USER}
     FRONTEND_URL: ${env:FRONTEND_URL}
