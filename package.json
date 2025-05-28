@@ -30,14 +30,10 @@
     "openai": "^4.86.1",
     "pdfkit": "^0.15.1",
     "pdfkit-table": "^0.1.99",
-    "pg": "^8.16.0",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.7",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-http": "^3.2.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^10.0.0"
-  },
-  "devDependencies": {
-    "sequelize-cli": "^6.6.3"
   }
 }

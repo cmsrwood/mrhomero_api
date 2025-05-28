@@ -1,0 +1,46 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: mrhomero
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: mrhomero-api
+service: mrhomero-api
+
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_NAME: ${env:DB_NAME}
+    DB_PASS: ${env:DB_PASS}
+    DB_PORT: ${env:DB_PORT}
+    DB_SSL: ${env:DB_SSL}
+    DB_USER: ${env:DB_USER}
+    EMAIL_PASS: ${env:EMAIL_PASS}
+    EMAIL_USER: ${env:EMAIL_USER}
+    FRONTEND_URL: ${env:FRONTEND_URL}
+    GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
+    JWT_SECRET: ${env:JWT_SECRET}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    PORT: ${env:PORT}
+
+functions:
+  api:
+    handler: server.handler
+    events:
+      - httpApi: '*'
+
+package:
+  exclude:
+    - node_modules/**
+    - .git/**
+    - .vscode/**
+    - .env
+    - README.md
+
+plugins:
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    path: .env
