@@ -4,7 +4,6 @@ org: mrhomero
 app: mrhomero-api
 service: mrhomero-api
 
-
 provider:
   name: aws
   runtime: nodejs18.x
@@ -12,16 +11,26 @@ provider:
   environment:
     DB_HOST: ${env:DB_HOST}
     DB_NAME: ${env:DB_NAME}
+    DB_USER: ${env:DB_USER}
     DB_PASS: ${env:DB_PASS}
     DB_PORT: ${env:DB_PORT}
-    DB_SSL: ${env:DB_SSL}
-    DB_USER: ${env:DB_USER}
+    DB_DIALECT: ${env:DB_DIALECT}
+
+    DB_TEST_USER: ${env:DB_TEST_USER}
+    DB_TEST_PASS: ${env:DB_TEST_PASS}
+    DB_TEST_NAME: ${env:DB_TEST_NAME}
+    DB_TEST_HOST: ${env:DB_TEST_HOST}
+    DB_TEST_PORT: ${env:DB_TEST_PORT}
+    DB_TEST_DIALECT: ${env:DB_TEST_DIALECT}
+
+    APP_NAME: ${env:APP_NAME}
+    NODE_ENV: ${env:NODE_ENV}
     EMAIL_PASS: ${env:EMAIL_PASS}
     EMAIL_USER: ${env:EMAIL_USER}
     FRONTEND_URL: ${env:FRONTEND_URL}
     GOOGLE_API_KEY: ${env:GOOGLE_API_KEY}
-    JWT_SECRET: ${env:JWT_SECRET}
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    JWT_SECRET: ${env:JWT_SECRET}
     PORT: ${env:PORT}
 
 functions:

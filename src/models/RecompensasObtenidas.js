@@ -13,10 +13,22 @@ const RecompensasObtenidas = sequelize.define(
         id_recomp: {
             type: DataTypes.STRING,
             allowNull: false,
+            references: {
+                model: "recompensas",
+                key: "id_recomp"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
         id_user: {
             type: DataTypes.STRING,
             allowNull: false,
+            references: {
+                model: "usuarios",
+                key: "id_user"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
         codigo: {
             type: DataTypes.STRING(6),

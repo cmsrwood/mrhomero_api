@@ -26,6 +26,12 @@ const EmpleadosHoras = sequelize.define(
         id_user: {
             type: DataTypes.STRING,
             allowNull: false,
+            references: {
+                model: "usuarios",
+                key: "id_user"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         }
     },
     {

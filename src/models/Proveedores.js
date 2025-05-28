@@ -8,6 +8,8 @@ const Proveedores = sequelize.define(
         id_proveedor: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
         },
         prov_nombre: {
             type: DataTypes.STRING,

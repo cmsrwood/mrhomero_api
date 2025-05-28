@@ -34,6 +34,12 @@ const Inventario = sequelize.define(
         id_proveedor: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: "proveedores",
+                key: "id_proveedor"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         }
     },
     {

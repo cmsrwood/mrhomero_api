@@ -10,9 +10,6 @@ const connectDB = async () => {
         database: process.env.DB_NAME || 'mrhomero',
         port: process.env.DB_PORT || 3306,
         connectTimeout: 10000,
-        ssl: process.env.DB_SSL ? {
-            ca: fs.readFileSync(path.join(__dirname, './certs/ca.pem'))
-        } : false,
         port: process.env.DB_PORT || 3306
     });
 

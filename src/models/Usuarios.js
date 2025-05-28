@@ -50,7 +50,13 @@ const Usuarios = sequelize.define(
         },
         id_rol: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: "roles",
+                key: "id_rol"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
         user_estado: {
             type: DataTypes.INTEGER,

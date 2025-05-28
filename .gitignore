@@ -7,3 +7,4 @@ dist
 /src/uploads/*.gif
 /src/uploads/*.svg
 /src/uploads/*.webp
+/.serverless

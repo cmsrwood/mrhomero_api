@@ -8,6 +8,7 @@ const Productos = sequelize.define(
         id_producto: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true
         },
         pro_nom: {
             type: DataTypes.STRING,
@@ -35,7 +36,13 @@ const Productos = sequelize.define(
         },
         id_categoria: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: "categorias",
+                key: "id_categoria"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         }
     },
     {

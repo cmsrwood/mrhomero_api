@@ -7,6 +7,7 @@ const Recompensas = sequelize.define(
         id_recomp: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
         },
         recompensa_nombre: {
             type: DataTypes.STRING,

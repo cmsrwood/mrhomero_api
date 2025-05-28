@@ -12,12 +12,24 @@ const DetalleVentas = sequelize.define(
             allowNull: false,
         },
         id_venta: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
+            references: {
+                model: 'ventas',
+                key: 'id_venta'
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
         id_producto: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
+            references: {
+                model: "productos",
+                key: "id_producto"
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
         },
         cantidad_producto: {
             type: DataTypes.INTEGER,

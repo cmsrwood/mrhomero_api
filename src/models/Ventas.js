@@ -7,6 +7,7 @@ const Ventas = sequelize.define(
         id_venta: {
             type: DataTypes.STRING,
             allowNull: false,
+            primaryKey: true,
         },
         venta_fecha: {
             type: DataTypes.DATE,
