@@ -36,6 +36,7 @@ module.exports = {
       venta_estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       },
     },);
 

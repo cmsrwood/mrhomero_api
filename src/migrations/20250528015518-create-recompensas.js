@@ -29,6 +29,7 @@ module.exports = {
       recomp_estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       }
     });
   },

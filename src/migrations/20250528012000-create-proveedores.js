@@ -35,6 +35,7 @@ module.exports = {
       prov_activo: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       }
     });
 

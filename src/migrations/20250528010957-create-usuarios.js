@@ -64,6 +64,7 @@ module.exports = {
       user_estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       },
     });
   },

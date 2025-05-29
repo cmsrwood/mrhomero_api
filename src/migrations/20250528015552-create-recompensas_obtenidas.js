@@ -43,6 +43,7 @@ module.exports = {
       estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       }
     });
   },

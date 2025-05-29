@@ -34,6 +34,7 @@ module.exports = {
       pro_estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 1
       },
       id_categoria: {
         type: DataTypes.STRING,

@@ -20,7 +20,8 @@ module.exports = {
       },
       cat_estado: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1
       }
     },);
   },
