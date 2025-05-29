@@ -7,9 +7,6 @@ const imagenesRoutes = require('./imagenes');
 
 const router = express.Router();
 
-router.use('/', (req, res, next) => {
-    res.send('API de Mr Homero');
-});
 router.use('/personas', personasRoutes);
 router.use('/tienda', tiendaRoutes);
 router.use('/auth', authRoutes);

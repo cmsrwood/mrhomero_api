@@ -32,6 +32,11 @@ const createApp = () => {
     app.use(express.urlencoded({ extended: true }));
     app.use(requestLogger);
 
+    // Ruta principal
+    app.get('/', (req, res) => {
+        res.send('API de Mr Homero');
+    });
+
     // Rutas
     app.use('/api', routes);
 
