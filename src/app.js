@@ -13,37 +13,36 @@ const FRONTEND_URL = process.env.FRONTEND_URL
 const createApp = () => {
     const app = express();
 
-    // Middlewares
-    app.use(cors({
+    // src/app.js
+    const corsOptions = {
         origin: (origin, callback) => {
-            console.log('\nrequest origin: ', origin);
-            if (!origin || FRONTEND_URL.includes(origin)) {
+            const allowedOrigins = FRONTEND_URL;
+            if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
             } else {
-                callback(new Error('No autorizado por CORS'));
+                callback(new Error('Not allowed by CORS'));
             }
         },
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
-    }));
+        credentials: false
+    };
+
+    // Agrega esto ANTES de las rutas
+    app.use(cors(corsOptions));
+    app.options('*', cors(corsOptions));
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(requestLogger);
 
-    // Ruta principal
     app.get('/', (req, res) => {
         res.send('API de Mr Homero');
     });
 
-    // Rutas
     app.use('/api', routes);
-
-    //Ruta Swagger
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-    // Manejo de errores global
     app.use(errorHandler);
 
     return app;

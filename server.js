@@ -33,6 +33,7 @@ const startServer = async () => {
         await sequelizeDB.authenticate();
         await sequelizeDB.sync({ force: false });
         console.log('Base de datos sincronizada correctamente.');
+
         // Conectar a la base de datos
         await connectDB();
 
@@ -46,6 +47,7 @@ const startServer = async () => {
             console.log(`- Local:    http://localhost:${port}`);
             console.log(`- Red:      http://${localIP}:${port}`);
         });
+
     } catch (error) {
         console.error('Error al iniciar el servidor:', error);
         process.exit(1);
