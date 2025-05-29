@@ -22,6 +22,8 @@ provider:
         - DELETE
         - OPTIONS
       allowCredentials: false 
+    binaryMediaTypes:
+      - '*/*'
   timeout: 30
 
   environment:
