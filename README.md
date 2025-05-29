@@ -1,6 +1,6 @@
 # Mr. Homero API
 
-API RESTful para **Mr. Homero**, un sistema de gestión integral para restaurantes. Esta API maneja usuarios, productos, pedidos, y más.
+API RESTful para **Mr. Homero**. Esta API maneja usuarios, productos, pedidos, y más.
 
 ---
 
