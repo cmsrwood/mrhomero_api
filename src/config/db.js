@@ -10,7 +10,6 @@ const connectDB = async () => {
         database: process.env.DB_NAME || 'mrhomero',
         port: process.env.DB_PORT || 3306,
         connectTimeout: 10000,
-        port: process.env.DB_PORT || 3306
     });
 
     return new Promise((resolve, reject) => {

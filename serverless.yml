@@ -8,8 +8,9 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
+  httpApi:
+    cors: true
   environment:
-  
     NODE_ENV: ${env:NODE_ENV}
 
     DB_HOST: ${env:DB_HOST}
@@ -38,7 +39,9 @@ functions:
   api:
     handler: server.handler
     events:
-      - httpApi: '*'
+      - httpApi:
+          path: /{proxy+} 
+          method: '*'
 
 package:
   exclude:
