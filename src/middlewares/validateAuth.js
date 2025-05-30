@@ -1,4 +1,6 @@
 const { BadRequestError } = require('../errors/ExceptionErrors');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const validateRegistrar = (req, res, next) => {
     const { nombres, apellidos, email, password, confirmPassword } = req.body;
@@ -63,11 +65,28 @@ const validateToken = (req, res, next) => {
     if (error.length > 0) {
         throw new BadRequestError(error);
     }
-    next();
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        return res.status(401).json({ message: "Token inválido o expirado" });
+    }
 };
+
+const allowRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.rol)) {
+            return res.status(403).json({ message: "Acceso denegado" });
+        }
+        next();
+    }
+}
 
 module.exports = {
     validateUser,
     validateToken,
-    validateRegistrar
+    validateRegistrar,
+    allowRoles
 };

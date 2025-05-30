@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const menuController = require('../../controllers/menuController');
 const { validateMenu } = require('../../middlewares/validateMenu');
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 /**
  * @swagger
@@ -20,7 +21,7 @@ const { validateMenu } = require('../../middlewares/validateMenu');
  *       200:
  *         description: Lista de categorías obtenida exitosamente
  */
-router.get('/', menuController.mostrarCategorias);
+router.get('/',menuController.mostrarCategorias);
 
 /**
  * @swagger
@@ -42,7 +43,7 @@ router.get('/', menuController.mostrarCategorias);
  *         description: Categoría no encontrada
  */
 
-router.get('/:id', menuController.mostrarCategoria);
+router.get('/:id',menuController.mostrarCategoria);
 
 /**
  * @swagger
@@ -72,7 +73,7 @@ router.get('/:id', menuController.mostrarCategoria);
  *       400:
  *         description: Error en la solicitud
  */
-router.post('/crear', validateMenu, menuController.crearCategoria);
+router.post('/crear', validateToken, allowRoles(1, 2), validateMenu, menuController.crearCategoria);
 
 /**
  * @swagger
