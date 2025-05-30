@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const provController = require('../../controllers/proveedoresController');
 const { validateProveedor } = require('../../middlewares/validateProveedor');
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 /**
  * @swagger
@@ -64,7 +65,7 @@ router.get('/', provController.mostrarProveedores);
 *       200:
 *         description: Proveedor creado exitosamente
 */
-router.post('/crear', validateProveedor, provController.crearProveedor);
+router.post('/crear', validateToken, allowRoles(1, 2), validateProveedor, provController.crearProveedor);
 
 //Put
 
@@ -117,7 +118,7 @@ router.post('/crear', validateProveedor, provController.crearProveedor);
 *       500:
 *         description: Error al actualizar el proveedor
 */
-router.put('/actualizar/:id', validateProveedor, provController.actualizarProveedor);
+router.put('/actualizar/:id', validateToken, allowRoles(1, 2), validateProveedor, provController.actualizarProveedor);
 
 //Delete
 
@@ -142,6 +143,6 @@ router.put('/actualizar/:id', validateProveedor, provController.actualizarProvee
 *       500:
 *         description: Error al eliminar el proveedor
 */
-router.delete('/eliminar/:id', provController.eliminarProveedor);
+router.delete('/eliminar/:id', validateToken, allowRoles(1, 2), provController.eliminarProveedor);
 
 module.exports = router

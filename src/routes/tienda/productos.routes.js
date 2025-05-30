@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productosController = require('../../controllers/productosController');
 const { validateProducto } = require('../../middlewares/validateProducto');
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 /**
  * @swagger
@@ -111,7 +112,7 @@ router.get('/categoria/:id', productosController.mostrarProductosPorcategoria);
  *       500:
  *         description: Error interno del servidor
  * */
-router.post('/crear', validateProducto, productosController.crearProducto);
+router.post('/crear', validateToken, allowRoles(1, 2), validateProducto, productosController.crearProducto);
 
 //Put
 
@@ -167,7 +168,7 @@ router.post('/crear', validateProducto, productosController.crearProducto);
  *       404:
  *         description: Producto no encontrado
  * */
-router.put('/actualizar/:id', productosController.actualizarProducto);
+router.put('/actualizar/:id', validateToken, allowRoles(1, 2), productosController.actualizarProducto);
 
 /**
  * @swagger
@@ -188,7 +189,7 @@ router.put('/actualizar/:id', productosController.actualizarProducto);
  *       404:
  *         description: Producto no encontrado
  */
-router.put('/restaurar/:id', productosController.restaurarProducto);
+router.put('/restaurar/:id', validateToken, allowRoles(1, 2), productosController.restaurarProducto);
 
 /**
  * @swagger
@@ -209,6 +210,6 @@ router.put('/restaurar/:id', productosController.restaurarProducto);
  *       404:
  *         description: Producto no encontrado
  */
-router.put('/eliminar/:id', productosController.eliminarProducto);
+router.put('/eliminar/:id', validateToken, allowRoles(1, 2), productosController.eliminarProducto);
 
 module.exports = router;

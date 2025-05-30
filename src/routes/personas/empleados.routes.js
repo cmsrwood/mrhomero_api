@@ -3,7 +3,7 @@ const router = express.Router();
 const empleadosController = require('../../controllers/empleadosController');
 const { validateEmpleado } = require('../../middlewares/validateEmpleado');
 const { validateId } = require('../../middlewares/validateGeneral');
-
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 /**
  * @swagger
@@ -157,7 +157,7 @@ router.get('/horasDia/:id/:fecha', empleadosController.horasDia);
  *       400:
  *         description: ID inválido
  */
-router.post('/horaInicio/:id', empleadosController.horaInicio);
+router.post('/horaInicio/:id', validateToken, allowRoles(2), empleadosController.horaInicio);
 
 /**
  * @swagger
@@ -178,7 +178,7 @@ router.post('/horaInicio/:id', empleadosController.horaInicio);
  *       400:
  *         description: ID inválido
  */
-router.post('/horaFin/:id', empleadosController.horaFin);
+router.post('/horaFin/:id', validateToken, allowRoles(2), empleadosController.horaFin);
 
 /**
  * @swagger
@@ -220,7 +220,7 @@ router.post('/horaFin/:id', empleadosController.horaFin);
  *       400:   
  *         description: ID inválido
  */
-router.put('/crear', validateEmpleado, empleadosController.crearEmpleado);
+router.put('/crear', validateToken, allowRoles(1), validateEmpleado, empleadosController.crearEmpleado);
 
 /**
  * @swagger
@@ -262,7 +262,7 @@ router.put('/crear', validateEmpleado, empleadosController.crearEmpleado);
  *       400:       
  *         description: ID inválido
  */
-router.put('/actualizar/', validateEmpleado, empleadosController.actualizarEmpleado);
+router.put('/actualizar/', validateToken, allowRoles(1, 2), validateEmpleado, empleadosController.actualizarEmpleado);
 
 /**
  * @swagger
@@ -283,7 +283,7 @@ router.put('/actualizar/', validateEmpleado, empleadosController.actualizarEmple
  *       400:
  *         description: ID inválido
  */
-router.put('/eliminar/:id', validateId, empleadosController.eliminarEmpleado);
+router.put('/eliminar/:id', validateToken, allowRoles(1, 2), validateId, empleadosController.eliminarEmpleado);
 
 
 module.exports = router;

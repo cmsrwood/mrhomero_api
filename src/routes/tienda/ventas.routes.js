@@ -3,6 +3,7 @@ const router = express.Router();
 const ventasController = require('../../controllers/ventasController');
 const { validateAnoMes, validateAno, validateIdVenta, validateVenta, validateDetalleVenta } = require('../../middlewares/validateVentas');
 const { validateId } = require('../../middlewares/validateGeneral');
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 /**
  * @swagger
@@ -325,7 +326,7 @@ router.get('/reporteIA/:ano/:mes', validateAnoMes, ventasController.reporteMensu
  *       404:
  *         description: El cliente no existe
  */
-router.post('/crear', validateVenta, ventasController.crearVenta)
+router.post('/crear', validateToken, allowRoles(1, 2), validateVenta, ventasController.crearVenta)
 
 /**
  * @swagger
@@ -361,7 +362,7 @@ router.post('/crear', validateVenta, ventasController.crearVenta)
  *       404:
  *         description: La venta o el producto no existen
  * */
-router.post('/crearDetalleVenta', validateDetalleVenta, ventasController.crearDetalleVenta);
+router.post('/crearDetalleVenta', validateToken, allowRoles(1, 2), validateDetalleVenta, ventasController.crearDetalleVenta);
 
 // Put
 
@@ -384,7 +385,7 @@ router.post('/crearDetalleVenta', validateDetalleVenta, ventasController.crearDe
  *       404:
  *         description: Venta no encontrada
  */
-router.put('/eliminar/:id', ventasController.eliminarVenta);
+router.put('/eliminar/:id', validateToken, allowRoles(1, 2), ventasController.eliminarVenta);
 
 /**
  * @swagger
@@ -405,6 +406,6 @@ router.put('/eliminar/:id', ventasController.eliminarVenta);
  *       404:
  *         description: Venta no encontrada
  */
-router.put('/restaurar/:id', ventasController.restaurarVenta);
+router.put('/restaurar/:id', validateToken, allowRoles(1, 2), ventasController.restaurarVenta);
 
 module.exports = router

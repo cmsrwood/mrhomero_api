@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const clientesController = require('../../controllers/clientesController');
 const { validateCliente } = require('../../middlewares/validateCliente')
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 // Get
 
@@ -154,7 +155,7 @@ router.put('/agregarPuntos/:id', clientesController.agregarPuntos);
  *       404:
  *         description: Cliente no encontrado
  */
-router.put('/eliminar/:id', clientesController.eliminarCliente);
+router.put('/eliminar/:id', validateToken, allowRoles(1), clientesController.eliminarCliente);
 
 /**
  * @swagger
@@ -175,7 +176,7 @@ router.put('/eliminar/:id', clientesController.eliminarCliente);
  *       404:
  *         description: Cliente no encontrado
  */
-router.put('/restaurar/:id', clientesController.restaurarCliente);
+router.put('/restaurar/:id', validateToken, allowRoles(1), clientesController.restaurarCliente);
 
 /**
  * @swagger

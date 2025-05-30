@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const recompensasController = require('../../controllers/recompensasController');
 const validateRecompensa = require('../../middlewares/validateRecompensa');
+const {validateToken, allowRoles} = require('../../middlewares/validateAuth');
 
 
 /**
@@ -135,7 +136,7 @@ router.get('/puntosUsuario/:id', recompensasController.mostrarPuntos);
  *       500:
  *         description: Error en el servidor
  */
-router.post('/crear', validateRecompensa, recompensasController.crearRecompensa);
+router.post('/crear', validateToken, allowRoles(1, 2), validateRecompensa, recompensasController.crearRecompensa);
 
 /**
  * @swagger
@@ -166,7 +167,7 @@ router.post('/crear', validateRecompensa, recompensasController.crearRecompensa)
  *       400:
  *         description: Error al reclamar la recompensa
  */
-router.post('/reclamar/:id', recompensasController.reclamarRecompensa);
+router.post('/reclamar/:id', validateToken, allowRoles(1, 2), recompensasController.reclamarRecompensa);
 
 /**
  * @swagger
@@ -206,7 +207,7 @@ router.post('/reclamar/:id', recompensasController.reclamarRecompensa);
  *       404:
  *         description: Error al actualizar la recompensa
  */
-router.put('/actualizar/:id', recompensasController.actualizarRecompensa);
+router.put('/actualizar/:id', validateToken, allowRoles(1, 2), recompensasController.actualizarRecompensa);
 
 /**
  * @swagger
@@ -237,7 +238,7 @@ router.put('/actualizar/:id', recompensasController.actualizarRecompensa);
  *       400:
  *         description: Error en el servidor
  */
-router.put('/validar/:id', recompensasController.validarRecompensa);
+router.put('/validar/:id', validateToken, allowRoles(1, 2), recompensasController.validarRecompensa);
 
 /**
  * @swagger
@@ -258,7 +259,7 @@ router.put('/validar/:id', recompensasController.validarRecompensa);
  *       400:
  *         description: Error en el servidor
  */
-router.put('/restaurar/:id', recompensasController.restaurarRecompensa);
+router.put('/restaurar/:id', validateToken, allowRoles(1, 2), recompensasController.restaurarRecompensa);
 
 /**
  * @swagger
@@ -279,6 +280,6 @@ router.put('/restaurar/:id', recompensasController.restaurarRecompensa);
  *       400:
  *         description: Error en el servidor
  */
-router.put('/eliminar/:id', recompensasController.eliminarRecompensa);
+router.put('/eliminar/:id', validateToken, allowRoles(1, 2), recompensasController.eliminarRecompensa);
 
 module.exports = router

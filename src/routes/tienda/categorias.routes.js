@@ -21,7 +21,7 @@ const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
  *       200:
  *         description: Lista de categorías obtenida exitosamente
  */
-router.get('/',menuController.mostrarCategorias);
+router.get('/', menuController.mostrarCategorias);
 
 /**
  * @swagger
@@ -43,7 +43,7 @@ router.get('/',menuController.mostrarCategorias);
  *         description: Categoría no encontrada
  */
 
-router.get('/:id',menuController.mostrarCategoria);
+router.get('/:id', menuController.mostrarCategoria);
 
 /**
  * @swagger
@@ -107,7 +107,7 @@ router.post('/crear', validateToken, allowRoles(1, 2), validateMenu, menuControl
  *       404:
  *         description: Categoría no encontrada
  */
-router.put('/actualizar/:id', menuController.actualizarCategoria);
+router.put('/actualizar/:id', validateToken, allowRoles(1, 2), menuController.actualizarCategoria);
 
 /**
  * @swagger
@@ -128,7 +128,7 @@ router.put('/actualizar/:id', menuController.actualizarCategoria);
  *       404:
  *         description: Categoría no encontrada
  */
-router.put('/restaurar/:id', menuController.restaurarCategoria);
+router.put('/restaurar/:id', validateToken, allowRoles(1, 2), menuController.restaurarCategoria);
 
 /**
  * @swagger
@@ -149,6 +149,6 @@ router.put('/restaurar/:id', menuController.restaurarCategoria);
  *       404:
  *         description: Categoría no encontrada
  */
-router.delete('/eliminar/:id', menuController.eliminarCategoria);
+router.delete('/eliminar/:id', validateToken, allowRoles(1, 2), menuController.eliminarCategoria);
 
 module.exports = router;

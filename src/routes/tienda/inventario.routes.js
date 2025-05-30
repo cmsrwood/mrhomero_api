@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const invController = require('../../controllers/invController');
 const { validateInventario } = require('../../middlewares/validateInv');
-const { validate } = require('uuid');
-
+const { validateToken, allowRoles } = require('../../middlewares/validateAuth');
 
 
 /**
@@ -65,7 +64,7 @@ router.get('/:id', invController.mostrarProductoInventario);
  *       404:
  *         description: Proveedor no encontrada
  */
-router.get('/proveedores/mostrar', invController.mostrarProveedores);
+router.get('/proveedores/mostrar', validateToken, allowRoles(1, 2), invController.mostrarProveedores);
 /**
  * @swagger
  * /tienda/inventario/crear:
@@ -87,7 +86,7 @@ router.get('/proveedores/mostrar', invController.mostrarProveedores);
  */
 
 //Post
-router.post('/crear', validateInventario, invController.crearInventario);
+router.post('/crear', validateToken, allowRoles(1, 2), validateInventario, invController.crearInventario);
 /**
  * @swagger
  * /tienda/inventario/actualizar/{id}:
@@ -109,7 +108,7 @@ router.post('/crear', validateInventario, invController.crearInventario);
  */
 
 //Put
-router.put('/actualizar/:id', validateInventario, invController.actualizarInventario);
+router.put('/actualizar/:id', validateToken, allowRoles(1, 2), validateInventario, invController.actualizarInventario);
 /**
  * @swagger
  * /tienda/inventario/eliminar/{id}:
@@ -131,6 +130,6 @@ router.put('/actualizar/:id', validateInventario, invController.actualizarInvent
  */
 
 //Delete
-router.delete('/eliminar/:id', invController.eliminarProductoInventario);
+router.delete('/eliminar/:id', validateToken, allowRoles(1, 2), invController.eliminarProductoInventario);
 
 module.exports = router
