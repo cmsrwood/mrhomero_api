@@ -167,7 +167,7 @@ router.post('/crear', validateToken, allowRoles(1, 2), validateRecompensa, recom
  *       400:
  *         description: Error al reclamar la recompensa
  */
-router.post('/reclamar/:id', validateToken, allowRoles(1, 2), recompensasController.reclamarRecompensa);
+router.post('/reclamar/:id', validateToken, allowRoles(1, 2, 3), recompensasController.reclamarRecompensa);
 
 /**
  * @swagger
