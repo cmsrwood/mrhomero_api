@@ -6,7 +6,7 @@ const requestLogger = require('./middlewares/requestLogger');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./config/swaggerConfig");
 
-const FRONTEND_URL = process.env.FRONTEND_URL
+const FRONTEND_URL = process.env.NODE_ENV === 'production'
     ? process.env.FRONTEND_URL.split(',')
     : ['http://localhost:5173', 'http://localhost:8081', 'http://localhost:8082', 'http://localhost:4400'];
 

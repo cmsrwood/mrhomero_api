@@ -6,7 +6,8 @@ const Usuarios = sequelize.define(
     {
         id_user: {
             type: DataTypes.STRING,
-            allowNull: false,
+            primaryKey: true,
+            allowNull: false
         },
         user_nom: {
             type: DataTypes.STRING,

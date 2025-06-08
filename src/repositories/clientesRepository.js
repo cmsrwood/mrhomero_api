@@ -1,38 +1,37 @@
 require("dotenv").config();
 const axios = require("axios");
+const Usuario = require("../models/Usuarios");
 
-// Repositorio para mostrar clientes 
+// Repositorio para mostrar clientes
 exports.mostrarClientes = async () => {
-    return new Promise((resolve, reject) => {
-        const q = `SELECT * FROM usuarios WHERE id_rol = 3`;
-        global.db.query(q, (err, results) => {
-            if (err) reject(err)
-            resolve(results)
+    try {
+        return await Usuario.findAll({
+            where: { id_rol: 3, user_estado: 1 },
+            order: [['user_fecha_registro', 'DESC']]
         });
-    })
+    } catch (error) {
+        throw error;
+    }
 }
 
 // Repositorio para mostrar cliente
 exports.mostrarCliente = async (id) => {
-    return new Promise((resolve, reject) => {
-        const q = `SELECT * FROM usuarios WHERE id_user = ?`;
-        global.db.query(q, id, (err, results) => {
-            if (err) reject(err)
-            resolve(results[0])
-        });
-    })
+    try {
+        return await Usuario.findByPk(id);
+    } catch (error) {
+        throw error;
+    }
 }
 
 // Repositorio para mostrar clientes por correo
 exports.mostrarClientePorEmail = async (email) => {
-    return new Promise((resolve, reject) => {
-        const q = `SELECT * FROM usuarios WHERE user_email = ?`;
-        const value = [email];
-        global.db.query(q, value, (err, results) => {
-            if (err) reject(err)
-            resolve(results[0])
+    try {
+        return await Usuario.findOne({
+            where: { user_email: email }
         });
-    })
+    } catch (error) {
+        throw error;
+    }
 }
 
 exports.mostrarResenas = async (placeId) => {
@@ -61,74 +60,82 @@ exports.mostrarRatingResenas = async (placeId) => {
     }
 };
 
-
-// Repositorio para mostrar clientes de la ultima semana
+// Repositorio para mostrar clientes del último mes
 exports.cuentaClientesUltimoMes = async () => {
-    return new Promise((resolve, reject) => {
-        const q = `SELECT * FROM usuarios WHERE id_rol = 3 AND MONTH(user_fecha_registro) = MONTH(CURRENT_DATE) AND YEAR(user_fecha_registro) = YEAR(CURRENT_DATE)`;
-        global.db.query(q, (err, results) => {
-            if (err) reject(err)
-            resolve(results)
+    try {
+        return await Usuario.findAll({
+            where: {
+                id_rol: 3,
+                [Sequelize.Op.and]: [
+                    Sequelize.where(Sequelize.fn('MONTH', Sequelize.col('user_fecha_registro')), new Date().getMonth() + 1),
+                    Sequelize.where(Sequelize.fn('YEAR', Sequelize.col('user_fecha_registro')), new Date().getFullYear())
+                ]
+            }
         });
-    })
+    } catch (error) {
+        throw error;
+    }
 }
 
-// Repositorio para agregar puntos 
+// Repositorio para agregar puntos
 exports.agregarPuntos = async (id, puntos) => {
-    return new Promise((resolve, reject) => {
-        const q = `UPDATE usuarios SET user_puntos = user_puntos + ? WHERE id_user = ?`;
-        const values = [puntos, id];
-        global.db.query(q, values, (err, results) => {
-            if (err) reject(err);
-            resolve(results)
-        })
-    })
+    try {
+        const usuario = await Usuario.findByPk(id);
+        if (!usuario) throw new Error("Usuario no encontrado");
+
+        return await usuario.update({
+            user_puntos: usuario.user_puntos + puntos
+        });
+    } catch (error) {
+        throw error;
+    }
 };
 
 // Repositorio para actualizar cliente
 exports.actualizarCliente = async (id, cliente) => {
-    const userBD = await this.mostrarCliente(id);
-    return new Promise((resolve, reject) => {
-        const q = `UPDATE usuarios SET user_nom = ?, user_apels = ?, user_tel = ?, user_foto = ? WHERE id_user = ?`;
-        const values = [
-            cliente.user_nom ? cliente.user_nom : userBD.user_nom,
-            cliente.user_apels ? cliente.user_apels : userBD.user_apels,
-            cliente.user_tel ? cliente.user_tel : userBD.user_tel,
-            cliente.foto ? cliente.foto : userBD.user_foto,
-            id
-        ]
-        global.db.query(q, values, (err, results) => {
-            if (err) reject(err);
-            resolve({
-                cliente: cliente,
-                message: "El cliente se ha actualizado correctamente"
-            })
-        })
-    })
+    try {
+        const usuario = await Usuario.findByPk(id);
+        if (!usuario) throw new Error("Usuario no encontrado");
+
+        const actualizacion = {};
+        if (cliente.user_nom) actualizacion.user_nom = cliente.user_nom;
+        if (cliente.user_apels) actualizacion.user_apels = cliente.user_apels;
+        if (cliente.user_tel) actualizacion.user_tel = cliente.user_tel;
+        if (cliente.foto) actualizacion.user_foto = cliente.foto;
+
+        await usuario.update(actualizacion);
+
+        return {
+            cliente: { ...usuario.get(), ...actualizacion },
+            message: "El cliente se ha actualizado correctamente"
+        };
+    } catch (error) {
+        throw error;
+    }
 }
 
 // Repositorio para eliminar cliente
 exports.eliminarCliente = async (id) => {
-    return new Promise((resolve, reject) => {
-        const q = `UPDATE usuarios SET user_estado = 0  WHERE id_user = ?`;
-        global.db.query(q, [id], (err, results) => {
-            if (err) reject(err);
-            resolve({
-                message: "El cliente se ha borrado correctamente"
-            })
-        });
-    })
+    try {
+        await Usuario.update(
+            { user_estado: 0 },
+            { where: { id_user: id } }
+        );
+        return { message: "El cliente se ha borrado correctamente" };
+    } catch (error) {
+        throw error;
+    }
 }
 
-// Repositorio para restaurar cliente 
+// Repositorio para restaurar cliente
 exports.restaurarCliente = async (id) => {
-    return new Promise((resolve, reject) => {
-        const q = `UPDATE usuarios SET user_estado = 1  WHERE id_user = ?`;
-        global.db.query(q, [id], (err, results) => {
-            if (err) reject(err);
-            resolve({
-                message: " El cliente se ha restaurado correctamente "
-            })
-        })
-    })
+    try {
+        await Usuario.update(
+            { user_estado: 1 },
+            { where: { id_user: id } }
+        );
+        return { message: "El cliente se ha restaurado correctamente" };
+    } catch (error) {
+        throw error;
+    }
 }

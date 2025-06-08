@@ -1,12 +1,10 @@
 const mysql = require('mysql2');
-const fs = require('fs');
-const path = require('path');
 
 const connectDB = async () => {
     const pool = mysql.createPool({
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASS || '',
+        host: process.env.NODE_ENV === 'production' ? process.env.DB_HOST : 'localhost',
+        user: process.env.NODE_ENV === 'production' ? process.env.DB_USER : 'root',
+        password: process.env.NODE_ENV === 'production' ? process.env.DB_PASS : '',
         database: process.env.DB_NAME || 'mrhomero',
         port: process.env.DB_PORT || 3306,
         connectTimeout: 10000,
