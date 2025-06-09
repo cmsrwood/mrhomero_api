@@ -1,6 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const Usuario = require("../models/Usuarios");
+const Sequelize = require("sequelize");
 
 // Repositorio para mostrar clientes
 exports.mostrarClientes = async () => {
