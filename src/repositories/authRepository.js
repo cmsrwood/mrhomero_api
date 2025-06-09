@@ -1,6 +1,7 @@
 const moment = require('moment');
 const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuarios');
+const Sequelize = require('sequelize');
 
 // Repositorio para ingresar
 exports.ingresar = async (user) => {
