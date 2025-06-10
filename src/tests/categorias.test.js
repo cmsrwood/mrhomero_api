@@ -6,7 +6,7 @@ beforeAll(() => {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'mrhomero'
+        database: 'mrhomero_test',
     });
 });
 
