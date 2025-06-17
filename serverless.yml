@@ -8,6 +8,11 @@ provider:
   name: aws
   runtime: nodejs22.x
   region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "lambda:*"
+      Resource: "*"
   httpApi:
     cors:
       allowedOrigins:
@@ -22,9 +27,8 @@ provider:
         - DELETE
         - OPTIONS
       allowCredentials: false 
-    binaryMediaTypes:
-      - '*/*'
-  timeout: 30
+
+  timeout: 29
 
   environment:
     NODE_ENV: ${env:NODE_ENV}
@@ -63,8 +67,8 @@ package:
   exclude:
     - .git/**
     - .vscode/**
+    - .serverless/**
     - .env
-    - README.md
 
 plugins:
   - serverless-dotenv-plugin
